@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - MyDoc</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="auth-section">
+    <div class="auth-container">
+      <h1>MyDoc</h1>
+      <h2>Welcome Back!</h2>
+      <p>Please log in to your account to continue.</p>
+      <form id="login-form" class="auth-form">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        <button type="submit">Login</button>
+
+        <div class="links">
+          <a href="forgot-password.html">Forgot Password?</a>
+          <p>Don't have an account? <a href="signup.html">Signup</a></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    // Target the form element
+    const loginForm = document.getElementById('login-form');
+
+    // Add a submit event listener to handle the login process
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault(); // Prevent form from refreshing the page
+      
+      // Simulate a login process (Replace with actual backend validation if needed)
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (email === "test@example.com" && password === "password123") { // Example credentials
+        // Set the login status in localStorage
+        localStorage.setItem('isLoggedIn', 'true');
+        
+        // Redirect to the homepage
+        alert("Login successful!");
+        window.location.href = "index.html";
+      } else {
+        alert("Invalid email or password. Please try again.");
+      }
+    });
+  </script>
+  <script src="firebaseConfig.js" type="module"></script>
+  <script src="scripts/login.js"></script>
+  
+</body>
+</html>

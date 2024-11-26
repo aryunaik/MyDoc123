@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup - Mydoc</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="auth-section">
+    <div class="auth-container">
+      <h1>Mydoc</h1>
+      <h2>Join Us Today!</h2>
+      <p>Create an account to book appointments and access health services.</p>
+      <form id="signup-form" class="auth-form">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+
+        <button type="submit">Signup</button>
+
+        <p>Already have an account? <a href="login.html">Login</a></p>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    // Target the signup form
+    const signupForm = document.getElementById('signup-form');
+
+    // Add a submit event listener to handle the signup process
+    signupForm.addEventListener('submit', (event) => {
+      event.preventDefault(); // Prevent form from refreshing the page
+
+      // Collect form data
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const confirmPassword = document.getElementById('confirm-password').value.trim();
+
+      // Validate password confirmation
+      if (password !== confirmPassword) {
+        alert("Passwords do not match. Please try again.");
+        return;
+      }
+
+      // Simulate storing user data in localStorage
+      const userData = {
+        name,
+        email,
+        phone,
+        password, // In real applications, passwords should be encrypted
+      };
+      localStorage.setItem('userData', JSON.stringify(userData));
+      localStorage.setItem('isLoggedIn', 'true'); // Set login status to true
+
+      // Redirect to the homepage
+      alert("Signup successful! Redirecting to the homepage...");
+      window.location.href = "index.html";
+    });
+  </script>
+  <script src="firebaseConfig.js"type="module"></script> <!-- Firebase configuration -->
+  <script src="scripts/signup.js"></script> <!-- Custom signup logic -->
+  
+</body>
+</html>
